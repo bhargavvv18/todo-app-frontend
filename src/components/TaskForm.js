@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const TaskForm = ({ onTaskAdded, selectedTask, onUpdateTask }) => {
   const [taskText, setTaskText] = useState(selectedTask ? selectedTask.text : '');
-  const baseURL = 'https://mernstack-todo-app-backend-d2x9.onrender.com/api/todos';
+  const baseURL = 'https://todo-app-backend-z62u.onrender.com';
 
   const handleAddTask = async () => {
     try {

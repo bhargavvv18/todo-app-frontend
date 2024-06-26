@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const TaskList = ({ tasks, onTaskUpdate }) => {
   const [selectedTask, setSelectedTask] = useState(null);
-  const baseURL = 'https://mernstack-todo-app-backend-d2x9.onrender.com/api/todos';
+  const baseURL = 'https://todo-app-backend-z62u.onrender.com';
 
   const handleUpdateClick = (task) => {
     setSelectedTask(task);

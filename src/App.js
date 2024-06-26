@@ -7,7 +7,7 @@ import axios from 'axios';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
-  const baseURL = 'https://mernstack-todo-app-backend-d2x9.onrender.com/api/todos';
+  const baseURL = 'https://todo-app-backend-z62u.onrender.com';
 
   useEffect(() => {
     fetchTasks();
@@ -29,6 +29,7 @@ function App() {
   const handleTaskUpdate = () => {
     fetchTasks(); 
     setSelectedTask(null);
+    
   };
 
  

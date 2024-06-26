@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
+import './App.css'; 
+import axios from 'axios';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const baseURL = 'https://mernstack-todo-app-backend-d2x9.onrender.com/api/todos';
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get(`${baseURL}`);
+      setTasks(response.data);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  };
+
+  const handleTaskAdded = () => {
+    fetchTasks(); 
+  };
+
+  const handleTaskUpdate = () => {
+    fetchTasks(); 
+    setSelectedTask(null);
+  };
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <h1 className="app-heading">ToDo List</h1>
+      <TaskForm
+        onTaskAdded={handleTaskAdded}
+        selectedTask={selectedTask}
+        onUpdateTask={handleTaskUpdate}
+        baseURL={baseURL}
+      />
+      <div className="task-list-container">
+        <TaskList
+          tasks={tasks}
+          onTaskUpdate={handleTaskUpdate}
+          baseURL={baseURL}
+        />
+      </div>
     </div>
   );
 }
